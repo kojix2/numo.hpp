@@ -2,7 +2,7 @@
 
 C++ header for [Numo](https://github.com/ruby-numo/numo-narray) and [Rice](https://github.com/jasonroelofs/rice)
 
-[![Build Status](https://github.com/ankane/numo.hpp/workflows/build/badge.svg?branch=master)](https://github.com/ankane/numo.hpp/actions)
+[![Build Status](https://github.com/ankane/numo.hpp/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/numo.hpp/actions)
 
 ## Installation
 
@@ -14,6 +14,7 @@ require "numo/narray"
 numo = File.join(Gem.loaded_specs["numo-narray"].require_path, "numo")
 abort "Numo header not found" unless find_header("numo/narray.h", numo)
 abort "Numo library not found" if Gem.win_platform? && !find_library("narray", nil, numo)
+$LDFLAGS += " -Wl,-undefined,dynamic_lookup" if RbConfig::CONFIG["host_os"] =~ /darwin/i
 ```
 
 ## Getting Started
@@ -88,6 +89,7 @@ Projects that use Numo.hpp
 
 - [Faiss](https://github.com/ankane/faiss)
 - [Midas](https://github.com/ankane/midas)
+- [Umappp](https://github.com/kojix2/ruby-umappp)
 
 ## History
 
